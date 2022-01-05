@@ -47,7 +47,7 @@ export const SetupView = () => {
 
     setIsInitalizingStore(true);
 
-    await saveAdmin(connection, wallet, false, [
+    await saveAdmin(connection, wallet, true, [
       new WhitelistedCreator({
         address: wallet.publicKey.toBase58(),
         activated: true,
