@@ -130,29 +130,30 @@ const VideoArtContent = ({
         />
       </div>
     ) : (
-      <video
-        className={className}
-        playsInline={true}
-        autoPlay={true}
-        muted={true}
-        controls={true}
-        controlsList="nodownload"
-        style={style}
-        loop={true}
-        poster={uri}
-      >
-        {likelyVideo && (
-          <source src={likelyVideo} type="video/mp4" style={style} />
-        )}
-        {animationURL && (
-          <source src={animationURL} type="video/mp4" style={style} />
-        )}
-        {files
-          ?.filter(f => typeof f !== 'string')
-          .map((f: any) => (
-            <source src={f.uri} type={f.type} style={style} />
-          ))}
-      </video>
+      <div className={`${className} square`}>
+        <video
+          playsInline={true}
+          autoPlay={true}
+          muted={true}
+          controls={true}
+          controlsList="nodownload"
+          style={style}
+          loop={true}
+          poster={uri}
+        >
+          {likelyVideo && (
+            <source src={likelyVideo} type="video/mp4" style={style} />
+          )}
+          {animationURL && (
+            <source src={animationURL} type="video/mp4" style={style} />
+          )}
+          {files
+            ?.filter(f => typeof f !== 'string')
+            .map((f: any) => (
+              <source src={f.uri} type={f.type} style={style} />
+            ))}
+        </video>
+      </div>
     );
 
   return content;
@@ -226,6 +227,14 @@ const HTMLContent = ({
     </HTMLWrapper>
   );
 };
+
+
+const ArtContentWrapper = styled.div`
+  display: flex;
+  alignItems: center;
+  justifyContent: center;
+  height: 100%;
+`;
 
 export const ArtContent = ({
   category,
@@ -347,15 +356,10 @@ export const ArtContent = ({
     );
 
   return (
-    <div
+    <ArtContentWrapper
       ref={ref as any}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
     >
       {content}
-    </div>
+    </ArtContentWrapper>
   );
 };
