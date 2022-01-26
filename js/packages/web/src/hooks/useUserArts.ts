@@ -18,11 +18,15 @@ export const useUserArts = (): SafetyDepositDraft[] => {
   const { metadata, masterEditions, editions } = useMeta();
   const { accountByMint } = useUserAccounts();
 
+  console.log('[Drox] metadata:', metadata);
+
   const ownedMetadata = metadata.filter(
     m =>
       accountByMint.has(m.info.mint) &&
       (accountByMint?.get(m.info.mint)?.info?.amount?.toNumber() || 0) > 0,
   );
+
+  console.log('[Drox] ownedMetadata', ownedMetadata);
 
   const possibleEditions = ownedMetadata.map(m =>
     m.info.edition ? editions[m.info.edition] : undefined,
@@ -79,6 +83,8 @@ export const useUserArts = (): SafetyDepositDraft[] => {
     }
     i++;
   });
+
+  console.log('[Drox] safetyDeposits', safetyDeposits);
 
   return safetyDeposits;
 };
