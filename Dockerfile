@@ -12,6 +12,9 @@ WORKDIR /app
 # Add the source code to app
 COPY ./js /app
 
+# Install dependencies for build to work
+RUN apk update && apk add --virtual build-dependencies build-base gcc wget git
+
 # Add python
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
