@@ -12,6 +12,10 @@ WORKDIR /app
 # Add the source code to app
 COPY ./js /app
 
+# Add python
+RUN apt-get update
+RUN apt-get install -y python3.6
+
 # Install all the dependencies
 RUN yarn install --frozen-lockfile
 RUN yarn bootstrap
