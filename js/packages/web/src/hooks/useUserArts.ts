@@ -15,12 +15,19 @@ import {
 import { useMeta } from './../contexts';
 
 export const useUserArts = (): SafetyDepositDraft[] => {
-  const { metadata, masterEditions, editions } = useMeta();
-  const { accountByMint } = useUserAccounts();
+  // metadata is [] empty. accountByMint contains the mint ids for the nfts that are in my accounts.
 
-  console.log('[Drox] metadata:', metadata);
+  // const { metadata, masterEditions, editions } = useMeta();
+  const met = useMeta();
+  const { metadata, masterEditions, editions } = met;
+  const { accountByMint, userAccounts } = useUserAccounts();
+
+  // console.log('[Drox] metadata:', metadata);
+  console.log('[Drox] useMeta() context', met);
 
   console.log('[Drox] accountByMint', accountByMint);
+
+  console.log('[Drox] userAccounts (delete after fix)', userAccounts);
 
   const ownedMetadata = metadata.filter(
     m =>
