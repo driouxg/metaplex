@@ -20,6 +20,8 @@ export const useUserArts = (): SafetyDepositDraft[] => {
 
   console.log('[Drox] metadata:', metadata);
 
+  console.log('[Drox] accountByMint', accountByMint);
+
   const ownedMetadata = metadata.filter(
     m =>
       accountByMint.has(m.info.mint) &&
