@@ -16,8 +16,6 @@ export const ArtSelector = (props: ArtSelectorProps) => {
   let items = useUserArts();
   if (props.filter) items = items.filter(props.filter);
 
-  console.log('[Drox] Filtered items', items);
-
   const selectedItems = useMemo<Set<string>>(
     () => new Set(selected.map(item => item.metadata.pubkey)),
     [selected],
